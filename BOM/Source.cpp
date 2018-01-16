@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-typedef enum GAME_MODE{GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99};
+typedef enum GAME_MODE { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 };
 
 int GameMode;
 
@@ -13,6 +13,9 @@ void DrawStage();//ステージの描画
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+	SetWindowSize(640, 480);
+	ChangeWindowMode(TRUE); // ウィンドウモードで起動
+
 	if (DxLib_Init() == -1) return -1; // DX ライブラリの初期化処理
 
 	SetDrawScreen(DX_SCREEN_BACK); // 描画先画面を裏にする
