@@ -13,7 +13,7 @@ void DrawStage();//ステージの描画
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-	SetWindowSize(640, 480);
+	SetWindowSize(880, 660);
 	ChangeWindowMode(TRUE); // ウィンドウモードで起動
 
 	if (DxLib_Init() == -1) return -1; // DX ライブラリの初期化処理
