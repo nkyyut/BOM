@@ -2,16 +2,23 @@
 #include <stdlib.h>
 #include <math.h>
 
-typedef enum GAME_MODE { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 };
+typedef enum GAME_MODE 
+{
+	GAME_TITLE, 
+	GAME_INIT, 
+	GAME_MAIN, 
+	GAME_RESULT, 
+	GAME_END = 99 
+};
 
-int GameMode;
+short int GameMode;
 
 void GameMain();//ゲームメイン
 void GameInit();//ゲームの初期化
 void DrawStage();//ステージの描画
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-	LPSTR lpCmdLine, int nCmdShow)
+			LPSTR lpCmdLine, int nCmdShow)
 {
 	SetWindowSize(640, 480);
 	ChangeWindowMode(TRUE); // ウィンドウモードで起動
@@ -23,7 +30,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	GameMode = GAME_MAIN;//ゲームモードの初期化
 
 	// ゲームループ
-	while (ProcessMessage() == 0 && GameMode != GAME_END) {
+	while (ProcessMessage() == 0 && GameMode != GAME_END) 
+	{
 
 		ClearDrawScreen(); // 画面の初期化
 
