@@ -1,14 +1,14 @@
 #include "DxLib.h"
 #include <stdlib.h>
 #include <math.h>
+#include "Stage.h"
 
-typedef enum GAME_MODE { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 };
+enum { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
 
 int GameMode;
 
 void GameMain();//ゲームメイン
 void GameInit();//ゲームの初期化
-void DrawStage();//ステージの描画
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
@@ -58,9 +58,4 @@ void GameMain()
 void GameInit()
 {
 	GameMode = GAME_MAIN;
-}
-//ステージの描画
-void DrawStage()
-{
-
 }
