@@ -13,7 +13,10 @@ void GameInit();//ゲームの初期化
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+	SetWindowSizeChangeEnableFlag(TRUE, TRUE);
+	SetGraphMode(880, 660, 32);
 	SetWindowSize(880, 660);
+
 	ChangeWindowMode(TRUE); // ウィンドウモードで起動
 
 	if (DxLib_Init() == -1) return -1; // DX ライブラリの初期化処理
