@@ -55,8 +55,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 //ƒQ[ƒ€ƒƒCƒ“
 void GameMain()
 {
-	for (int i = 0; i < 11; i++) {
-		for (int j = 0; j < 15; j++) {
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 15; j++) 
+		{
 			DrawStage(&BlockStat[i][j]);
 		}
 	}
@@ -66,8 +68,10 @@ void GameInit()
 {	
 	GameMode = GAME_MAIN;
 	
-	for (int i = 0; i < 11; i++) {
-		for (int j = 0; j < 15; j++) {
+	for (int i = 0; i < 11; i++) 
+	{
+		for (int j = 0; j < 15; j++) 
+		{
 			if(BlockInit(&BlockStat[i][j], j, i) == -1) GAME_MODE = GAME_END;
 		}
 	}
