@@ -57,7 +57,7 @@ void GameMain()
 {
 	for (int i = 0; i < 11; i++) {
 		for (int j = 0; j < 15; j++) {
-			DrawStage(&BlockStat[i][j]);//ステージの表示
+			DrawStage(&BlockStat[i][j]);
 		}
 	}
 }
