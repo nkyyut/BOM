@@ -2,5 +2,14 @@
 #include <stdio.h>
 #include "DxLib.h"
 
-void DrawStage();
-void BlockInit();
+//ブロックの構造体
+typedef struct Block
+{
+	int x;
+	int y;
+	int img;
+	bool flg;
+}Block;
+
+void DrawStage(Block *BlockStat);
+int BlockInit(Block *BlockStat, int x, int y);

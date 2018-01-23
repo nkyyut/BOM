@@ -1,9 +1,9 @@
-#include "DxLib.h"
-#include <stdlib.h>
-#include <math.h>
-#include "Stage.h"
+#include "Bom.h"
 
 enum { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
+
+//ブロックの構造体
+Block BlockStat[11][15];
 
 int GameMode;
 
@@ -20,7 +20,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetDrawScreen(DX_SCREEN_BACK); // 描画先画面を裏にする
 
-	GameMode = GAME_MAIN;//ゲームモードの初期化
+	GameMode = GAME_INIT;//ゲームモードの初期化
 
 	// ゲームループ
 	while (ProcessMessage() == 0 && GameMode != GAME_END) {
@@ -52,10 +52,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 //ゲームメイン
 void GameMain()
 {
-	DrawStage();
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 15; j++) {
+			DrawStage(&BlockStat[i][j]);
+		}
+	}
 }
 //ゲームの初期化
 void GameInit()
-{
+{	
 	GameMode = GAME_MAIN;
+	
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 15; j++) {
+			if(BlockInit(&BlockStat[i][j], j, i) == -1) GAME_MODE = GAME_END;
+		}
+	}
 }
