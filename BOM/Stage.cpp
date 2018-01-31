@@ -20,7 +20,7 @@ int BlockInit(Block *BlockStat, int x, int y)
 	BlockStat->y = y * 50 + 125;
 	BlockStat->flg = 0;
 
-	if (x % 2 == 1 && y % 2 == 0)//ハードブロックの配置
+	if (x % 2 == 1 && y % 2 == 1)//ハードブロックの配置
 	{
 		if ((BlockStat->img = LoadGraph("image/BlockImage.png")) == -1) return -1;
 		BlockStat->flg = 1;
@@ -31,12 +31,12 @@ int BlockInit(Block *BlockStat, int x, int y)
 		BlockStat->flg = 3;
 	}
 
-	if ((y == 0 || y == 10) && (x == 0 || x == 14)) //キャラクターの初期位置を初期化
+	if ((y == 0 || y == 10) && (x == 0 || x == 1 || x == 13 || x == 14)) //キャラクターの初期位置を初期化
 	{
 		BlockStat->img = 0;
 		BlockStat->flg = 0;
 	}
-	else if ((y == 1 || y == 9) && (x == 0 || x == 1 || x == 13 || x == 14))
+	else if ((y == 1 || y == 9) && (x == 0 || x == 14))
 	{
 		BlockStat->img = 0;
 		BlockStat->flg = 0;
