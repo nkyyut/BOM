@@ -8,7 +8,7 @@ typedef struct Block
 	int x;
 	int y;
 	int img;
-	bool flg;
+	int flg;
 }Block;
 
 void DrawStage(Block *BlockStat);

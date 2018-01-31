@@ -18,10 +18,18 @@ int BlockInit(Block *BlockStat, int x, int y)
 {
 	BlockStat->x = x * 50 + 90;
 	BlockStat->y = y * 50 + 125;
-	if((x % 2 == 1 && y % 2 == 0) && (BlockStat->img = LoadGraph("image/BlockImage.png")) == -1) return -1;
+	BlockStat->flg = 0;
 
-	if (x % 2 == 0 && y % 2 == 1) BlockStat->flg = 0;//通行可能不可のフラグの初期化
-	else BlockStat->flg = 1;
+	if (x % 2 == 1 && y % 2 == 0)//ハードブロックの配置
+	{
+		if ((BlockStat->img = LoadGraph("image/BlockImage.png")) == -1) return -1;
+		BlockStat->flg = 1;
+	}
+	else if(GetRand(1) == 1)//ソフトブロックの配置
+	{
+		if ((BlockStat->img = LoadGraph("image/BlockImage1.png")) == -1) return -1;
+		BlockStat->flg = 3;
+	}
 
 	return 0;
 }
