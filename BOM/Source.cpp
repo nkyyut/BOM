@@ -33,13 +33,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ゲームループ
 	while (ProcessMessage() == 0 && GameMode != GAME_END) {
 
-
 		#ifdef DEBUG 
 		GetMousePoint(&MouseX, &MouseY); // マウスの位置を取得
 		OldKey = NowKey;
 		NowKey = GetMouseInput();
 		KeyFlg = NowKey & ~OldKey;
-		if (KeyFlg & MOUSE_INPUT_LEFT) BlockStat[(MouseY-100) / 50][(MouseX-65) / 50].flg = 3;
+		if (BlockStat[(MouseY - 100) / 50][(MouseX - 65) / 50].flg == 0)
+		{
+			if (KeyFlg & MOUSE_INPUT_LEFT) BlockStat[(MouseY - 100) / 50][(MouseX - 65) / 50].flg = 3;
+		}
 		#endif
 
 		ClearDrawScreen(); // 画面の初期化
@@ -75,7 +77,7 @@ void GameMain()
 	{
 		for (int j = 0; j < 15; j++) 
 		{
-			DrawStage(&BlockStat[i][j]);
+			DrawStage(&BlockStat[i][j], j, i);
 		}
 	}
 }

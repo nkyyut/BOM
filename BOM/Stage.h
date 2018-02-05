@@ -7,9 +7,10 @@ typedef struct Block
 {
 	int x;
 	int y;
-	int img[2];
+	int img[7];
+	int bomTimer;
 	int flg;
 }Block;
 
-void DrawStage(Block *BlockStat);
+void DrawStage(Block *BlockStat, int x, int y);
 int BlockInit(Block *BlockStat, int x, int y);
