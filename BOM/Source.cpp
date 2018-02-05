@@ -1,4 +1,5 @@
 #include "Bom.h"
+#define DEBUG
 
 enum { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
 
@@ -6,6 +7,10 @@ enum { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
 Block BlockStat[11][15];
 
 int GameMode;
+int MouseX, MouseY;
+int NowKey;
+int OldKey;
+int KeyFlg;
 
 void GameMain();//ゲームメイン
 void GameInit();//ゲームの初期化
@@ -28,7 +33,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ゲームループ
 	while (ProcessMessage() == 0 && GameMode != GAME_END) {
 
+
+		#ifdef DEBUG 
+		GetMousePoint(&MouseX, &MouseY); // マウスの位置を取得
+		OldKey = NowKey;
+		NowKey = GetMouseInput();
+		KeyFlg = NowKey & ~OldKey;
+		if (KeyFlg & MOUSE_INPUT_LEFT) BlockStat[(MouseY-100) / 50][(MouseX-65) / 50].flg = 3;
+		#endif
+
 		ClearDrawScreen(); // 画面の初期化
+
+		DrawFormatString(0, 0, 0xffffff, "X:%d  Y:%d", MouseX, MouseY);
 
 		switch(GameMode)
 		{

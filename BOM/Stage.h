@@ -7,7 +7,7 @@ typedef struct Block
 {
 	int x;
 	int y;
-	int img;
+	int img[2];
 	int flg;
 }Block;
 
