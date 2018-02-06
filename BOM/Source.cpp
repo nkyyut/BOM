@@ -11,9 +11,11 @@ int MouseX, MouseY;
 int NowKey;
 int OldKey;
 int KeyFlg;
+int Blockimg[7];
 
 void GameMain();//ƒQ[ƒ€ƒƒCƒ“
 void GameInit();//ƒQ[ƒ€‚Ì‰Šú‰»
+int LoadImage();//‰æ‘œ‚Ì“Ç‚İ‚İ
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
@@ -77,7 +79,7 @@ void GameMain()
 	{
 		for (int j = 0; j < 15; j++) 
 		{
-			DrawStage(&BlockStat[i][j], j, i);
+			DrawStage(&BlockStat[i][j], Blockimg, j, i);
 		}
 	}
 }
@@ -90,7 +92,22 @@ void GameInit()
 	{
 		for (int j = 0; j < 15; j++) 
 		{
-			if(BlockInit(&BlockStat[i][j], j, i) == -1) GAME_MODE = GAME_END;
+			BlockInit(&BlockStat[i][j], j, i);
 		}
 	}
+
+	if (LoadImage() == -1) GameMode = GAME_END;
+}
+//‰æ‘œ‚Ì“Ç‚İ‚İ
+int LoadImage()
+{
+	if ((Blockimg[0] = LoadGraph("image/BlockImage.png")) == -1) return -1;
+	if ((Blockimg[1] = LoadGraph("image/BlockImage1.png")) == -1) return -1;
+	if ((Blockimg[2] = LoadGraph("image/BlockImage2.png")) == -1) return -1;
+	if ((Blockimg[3] = LoadGraph("image/Bom.png")) == -1) return -1;
+	if ((Blockimg[4] = LoadGraph("image/BomEffect.png")) == -1) return -1;
+	if ((Blockimg[5] = LoadGraph("image/BomEffect1.png")) == -1) return -1;
+	if ((Blockimg[6] = LoadGraph("image/BomEffect2.png")) == -1) return -1;
+
+	return 0;
 }
