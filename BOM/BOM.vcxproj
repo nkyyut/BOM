@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Bom.cpp" />
+    <ClCompile Include="MainSorce.cpp" />
+    <ClCompile Include="PlayerControle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Bom.h" />
+    <ClInclude Include="MainSorce.h" />
+    <ClInclude Include="PlayerControle.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3E73F55A-C061-431E-8FF5-CEA680F08602}</ProjectGuid>
@@ -119,9 +129,6 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Source.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

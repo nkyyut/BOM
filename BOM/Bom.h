@@ -1,13 +1,15 @@
 #pragma once
-
-#ifndef _BOM
-#define _BOM
-
-#include "DxLib.h"
-#include <stdlib.h>
-#include <math.h>
-#include "Stage.h"
 #include <stdio.h>
-#include"PlayerCharacter.h"
+#include "DxLib.h"
 
-#endif//二度読み防止処理
+//ブロックの構造体
+typedef struct Block
+{
+	int x;
+	int y;
+	int bomTimer;
+	int flg;
+}Block;
+
+void DrawStage(Block *BlockStat, int *BlockimgP, int x, int y);
+void BlockInit(Block *BlockStat, int x, int y);
