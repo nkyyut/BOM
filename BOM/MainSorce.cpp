@@ -1,21 +1,7 @@
+#include "MainSorce.h"
 #include "Bom.h"
+#include "PlayerControle.h"
 #define DEBUG
-
-enum { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
-
-//ブロックの構造体
-Block BlockStat[11][15];
-
-int GameMode;
-int MouseX, MouseY;
-int NowKey;
-int OldKey;
-int KeyFlg;
-int Blockimg[7];
-
-void GameMain();//ゲームメイン
-void GameInit();//ゲームの初期化
-int LoadImage();//画像の読み込み
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
@@ -30,21 +16,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetDrawScreen(DX_SCREEN_BACK); // 描画先画面を裏にする
 
-	GameMode = GAME_INIT;//ゲームモードの初期化
-
 	// ゲームループ
 	while (ProcessMessage() == 0 && GameMode != GAME_END) {
-
-		#ifdef DEBUG 
-		GetMousePoint(&MouseX, &MouseY); // マウスの位置を取得
-		OldKey = NowKey;
-		NowKey = GetMouseInput();
-		KeyFlg = NowKey & ~OldKey;
-		if (BlockStat[(MouseY - 100) / 50][(MouseX - 65) / 50].flg == 0)
-		{
-			if (KeyFlg & MOUSE_INPUT_LEFT) BlockStat[(MouseY - 100) / 50][(MouseX - 65) / 50].flg = 3;
-		}
-		#endif
 
 		ClearDrawScreen(); // 画面の初期化
 
@@ -72,32 +45,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	return 0; // ソフトの終了
 }
-//ゲームメイン
-void GameMain()
-{
-	for (int i = 0; i < 11; i++)
-	{
-		for (int j = 0; j < 15; j++) 
-		{
-			DrawStage(&BlockStat[i][j], Blockimg, j, i);
-		}
-	}
-}
-//ゲームの初期化
-void GameInit()
-{	
-	GameMode = GAME_MAIN;
-	
-	for (int i = 0; i < 11; i++) 
-	{
-		for (int j = 0; j < 15; j++) 
-		{
-			BlockInit(&BlockStat[i][j], j, i);
-		}
-	}
-
-	if (LoadImage() == -1) GameMode = GAME_END;
-}
 //画像の読み込み
 int LoadImage()
 {
@@ -108,6 +55,7 @@ int LoadImage()
 	if ((Blockimg[4] = LoadGraph("image/BomEffect.png")) == -1) return -1;
 	if ((Blockimg[5] = LoadGraph("image/BomEffect1.png")) == -1) return -1;
 	if ((Blockimg[6] = LoadGraph("image/BomEffect2.png")) == -1) return -1;
+	Bomber = LoadGraph("image/bomberman1.png");
 
 	return 0;
 }
