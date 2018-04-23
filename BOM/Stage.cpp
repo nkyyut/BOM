@@ -1,4 +1,4 @@
-#include "Bom.h"
+#include "Stage.h"
  
 //ステージの描画
 void DrawStage(Block *BlockStat, int *BlockimgP, int x, int y)
