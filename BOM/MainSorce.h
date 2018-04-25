@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef _BOM
-#define _BOM
-
 #include "DxLib.h"
 #include <stdlib.h>
 #include <math.h>
@@ -12,10 +9,14 @@
 typedef enum GAME_MODE { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
 
 //定数の宣言
-const short int STAGE_WIDTH = 880;
-const short int STAGE_HEIGHT = 660;
+const short int STAGE_WIDTH = 17;
+const short int STAGE_HEIGHT = 13;
+const short int WINDOW_WIDTH = 850;
+const short int WINDOW_HEIGHT = 650;
 
 //変数の宣言
 extern short int GameMode;
 
-#endif//二度読み防止処理
+//関数のプロトタイプ宣言
+void GameStatInit();
+int LoadImage();
