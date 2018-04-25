@@ -1,12 +1,8 @@
 #include "MainSorce.h"
-#define DEBUG
+#include "GameMain.h"
 
-enum { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
-
-//ブロックの構造体
-Block BlockStat[11][15];
-
-int GameMode;
+//変数の宣言
+short int GameMode = GAME_MAIN;
 int MouseX, MouseY;
 int NowKey;
 int OldKey;
@@ -15,14 +11,13 @@ int Blockimg[7];
 
 void GameMain();//ゲームメイン
 void GameInit();//ゲームの初期化
-int LoadImage();//画像の読み込み
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
 	SetWindowSizeChangeEnableFlag(TRUE, TRUE);
-	SetGraphMode(880, 660, 32);
-	SetWindowSize(880, 660);
+	SetGraphMode(STAGE_WIDTH, STAGE_HEIGHT, 32);
+	SetWindowSize(STAGE_WIDTH, STAGE_HEIGHT);
 
 	ChangeWindowMode(TRUE); // ウィンドウモードで起動
 
@@ -34,17 +29,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	// ゲームループ
 	while (ProcessMessage() == 0 && GameMode != GAME_END) {
-
-		#ifdef DEBUG 
-		GetMousePoint(&MouseX, &MouseY); // マウスの位置を取得
-		OldKey = NowKey;
-		NowKey = GetMouseInput();
-		KeyFlg = NowKey & ~OldKey;
-		if (BlockStat[(MouseY - 100) / 50][(MouseX - 65) / 50].flg == 0)
-		{
-			if (KeyFlg & MOUSE_INPUT_LEFT) BlockStat[(MouseY - 100) / 50][(MouseX - 65) / 50].flg = 3;
-		}
-		#endif
 
 		ClearDrawScreen(); // 画面の初期化
 
