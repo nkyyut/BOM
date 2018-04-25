@@ -6,9 +6,9 @@
 //•Ï”‚ÌéŒ¾
 short int GameMode = GAME_MAIN;
 int MouseX, MouseY;
-int NowKey;
-int OldKey;
-int KeyFlg;
+int NowKey[PLAYER_LIMIT];
+int OldKey[PLAYER_LIMIT];
+int KeyFlg[PLAYER_LIMIT];
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
@@ -35,6 +35,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	while (ProcessMessage() == 0 && GameMode != GAME_END) {
 
 		ClearDrawScreen(); // ‰æ–Ê‚Ì‰Šú‰»
+
+		for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
+		{
+			OldKey[i] = NowKey[i];
+		}
+		
+		NowKey[PLAYER1] = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+		NowKey[PLAYER2] = GetJoypadInputState(DX_INPUT_PAD2);
+		NowKey[PLAYER3] = GetJoypadInputState(DX_INPUT_PAD3);
+		NowKey[PLAYER4] = GetJoypadInputState(DX_INPUT_PAD4);
+	
+		for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
+		{
+			KeyFlg[i] = NowKey[i] & ~OldKey[i];
+		}
+
 
 		DrawFormatString(0, 0, 0xffffff, "X:%d  Y:%d", MouseX, MouseY);
 
