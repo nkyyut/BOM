@@ -17,6 +17,15 @@ const short int WINDOW_HEIGHT = 650;
 //変数の宣言
 extern short int GameMode;
 
+enum PLAYER_NUMBER
+{
+	PLAYER1,
+	PLAYER2,
+	PLAYER3,
+	PLAYER4,
+	PLAYER_LIMIT
+};
+
 //関数のプロトタイプ宣言
 void GameStatInit();
 int LoadImage();
