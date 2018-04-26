@@ -29,7 +29,7 @@ void PlayerStateInit()
 		PlayerState[i].BCount = STATE_INIT;
 		PlayerState[i].BPower = STATE_INIT;
 		PlayerState[i].PSpeed = STATE_INIT;
-		PlayerState[i].img = i;
+		PlayerState[i].img = 1;
 		PlayerState[i].Alive = true;
 	}
 }

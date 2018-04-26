@@ -13,6 +13,7 @@ typedef struct Block
 
 //•Ï”‚ÌéŒ¾
 extern int BomImage[2];
+extern int StageImage[3];
 
 void DrawStage(Block *BlockStat, int *BlockimgP, int x, int y);
 void BlockInit(Block *BlockStat, int x, int y);

@@ -1,5 +1,9 @@
 #include "MainSorce.h"
 #include "GameMain.h"
+#include"GameBattleInit.h"
+#include"GameTitle.h"
+#include"PlayerControle.h"
+#include"Bom.h"
 
 #define DEBUG
 
