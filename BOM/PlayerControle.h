@@ -1,5 +1,4 @@
 #pragma once
-#include"MainSorce.h"
 
 struct PLAYER
 {

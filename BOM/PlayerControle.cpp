@@ -41,11 +41,19 @@ void PlayerControl()
 	{
 		if (NowKey[i] & PAD_INPUT_UP)
 		{
-
+			PlayerState[i].y -= PlayerState[i].PSpeed;
 		}
 		if (NowKey[i] & PAD_INPUT_DOWN)
 		{
-
+			PlayerState[i].y += PlayerState[i].PSpeed;
+		}
+		if (NowKey[i] & PAD_INPUT_LEFT)
+		{
+			PlayerState[i].x -= PlayerState[i].PSpeed;
+		}
+		if (NowKey[i] & PAD_INPUT_RIGHT)
+		{
+			PlayerState[i].x += PlayerState[i].PSpeed;
 		}
 
 	}

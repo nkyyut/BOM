@@ -1,10 +1,18 @@
 #include "MainSorce.h"
+#include"Bom.h"
+#include"GameBattleInit.h"
+#include"GameMain.h"
+#include"PlayerControle.h"
+#include"GameTitle.h"
 
 #define DEBUG
 
 //ïœêîÇÃêÈåæ
 short int GameMode = GAME_MAIN;
 int MouseX, MouseY;
+int NowKey[PLAYER_LIMIT];
+int OldKey[PLAYER_LIMIT];
+int KeyFlg[PLAYER_LIMIT];
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
