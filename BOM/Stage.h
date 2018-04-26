@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MainSource.h"
+#include "MainSorce.h"
 
 //構造体の宣言
 typedef struct StageState
@@ -14,6 +14,7 @@ typedef struct StageState
 
 //変数の宣言
 extern int StageImage[3];
+extern STAGE_STATE StageState[STAGE_HEIGHT][STAGE_WIDTH];
 
 //関数のプロトタイプ宣言
 void DrawStage();
