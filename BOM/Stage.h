@@ -1,15 +1,20 @@
 #pragma once
-#include <stdio.h>
-#include "DxLib.h"
 
-//ブロックの構造体
-typedef struct Block
+#include "MainSource.h"
+
+//構造体の宣言
+typedef struct StageState
 {
-	int x;
-	int y;
-	int bomTimer;
-	int flg;
-}Block;
+	short int x;
+	short int y;
+	short int blockimg;
+	short int bomimg;
+	short int timer;
+}STAGE_STATE;
 
-void DrawStage(Block *BlockStat, int *BlockimgP, int x, int y);
-void BlockInit(Block *BlockStat, int x, int y);
+//変数の宣言
+extern int StageImage[3];
+
+//関数のプロトタイプ宣言
+void DrawStage();
+int StageStateInit();

@@ -1,74 +1,60 @@
 #include "Stage.h"
- 
-//ステージの描画
-void DrawStage(Block *BlockStat, int *BlockimgP, int x, int y)
+
+//変数の宣言
+short int Height;
+short int Width;
+int StageImage[3];
+STAGE_STATE StageState[STAGE_HEIGHT][STAGE_WIDTH];
+FILE *fp;
+
+//ステージの読み込み
+int LoadStageState()
 {
-	DrawRotaGraph(BlockStat -> x, BlockStat -> y, 1, 0, BlockimgP[BlockStat -> flg], TRUE);
+#pragma warning(disable:4996)
 
-	if ((BlockStat->flg == 3) && ++(*BlockStat).bomTimer >= 60)//爆弾の爆破
-	{
-		BlockStat->flg = 4;
-		BlockStat->bomTimer = 0;
-		if (x != 14 && ((BlockStat + 1)->flg == 0 || (BlockStat + 1)->flg == 2) || (BlockStat + 1)->flg == 3)
-		{
-			if ((BlockStat + 1)->flg == 3) (BlockStat + 1)->bomTimer = 60;
-			else (BlockStat + 1)->flg = 5;
-		}
-		if (x != 0 && ((BlockStat - 1)->flg == 0 || (BlockStat - 1)->flg == 2) || (BlockStat - 1)->flg == 3)
-		{
-			if ((BlockStat - 1)->flg == 3) (BlockStat - 1)->bomTimer = 60;
-			else (BlockStat - 1)->flg = 5;
-		}
-		if (y != 10 && ((BlockStat + 15)->flg == 0 || (BlockStat + 15)->flg == 2) || (BlockStat + 15)->flg == 3)
-		{
-			if ((BlockStat + 15)->flg == 3) (BlockStat + 15)->bomTimer = 60;
-			else (BlockStat + 15)->flg = 6;
-		}
-		if (y != 0 && ((BlockStat - 15)->flg == 0 || (BlockStat - 15)->flg == 2) || (BlockStat - 15)->flg == 3)
-		{
-			if ((BlockStat - 15)->flg == 3) (BlockStat - 15)->bomTimer = 60;
-			else (BlockStat - 15)->flg = 6;
-		}
-	}
-	else if ((BlockStat->flg >= 4) && ++(*BlockStat).bomTimer > 10)
-	{
-		BlockStat->bomTimer = 0;
-		BlockStat->flg = 0;
+	//ファイルオープン
+	if ((fp = fopen("stage/stage.txt", "r")) == NULL) {
+
+		//エラー処理
+		printf("Stage Data Error\n");
+
+		return -1;
 	}
 
-	DrawLine(0, 100, 880, 100, 0xffffff);
-	DrawLine(65, 100, 65, 650, 0xffffff);
-	DrawLine(0, 650, 880, 650, 0xffffff);
-	DrawLine(815, 100, 815, 650, 0xffffff);
+	for (Height = 0; Height < STAGE_HEIGHT; Height++)
+	{
+		for (Width = 0; Width < STAGE_WIDTH; Width++)
+		{
+			fscanf(fp, "%d", &StageState[Height][Width].blockimg);
+		}
+	}
+
+	//ファイルクローズ
+	fclose(fp);
+
+	return 0;
 }
 
-//ブロックのステータス初期化
-void BlockInit(Block *BlockStat, int x, int y)
+//ステージの初期化
+int StageStateInit()
 {
-	BlockStat->bomTimer = 0;
-	BlockStat->x = x * 50 + 90;
-	BlockStat->y = y * 50 + 125;
-	BlockStat->flg = 0;
+	if (LoadStageState() == -1) return -1;
 
-	if (x % 2 == 1 && y % 2 == 1)//ハードブロックの配置
+	for (Height = 1; Height < (STAGE_HEIGHT - 1); Height++)
 	{
-		BlockStat->flg = 1;
-	}
-	else if (GetRand(1) == 1)//ソフトブロックの配置
-	{
-		BlockStat->flg = 2;
-	}
-	else
-	{
-		BlockStat->flg = 0;
+		for (Width = 1; Width < (STAGE_WIDTH - 1); Width++)
+		{
+			StageState[Height][Width].x = Width * 50 + 50;
+			StageState[Height][Width].y = Height * 50 + 50;
+			StageState[Height][Width].bomimg = 0;
+			StageState[Height][Width].timer = 0;
+		}
 	}
 
-	if ((y == 0 || y == 10) && (x == 0 || x == 1 || x == 13 || x == 14)) //キャラクターの初期位置を初期化
-	{
-		BlockStat->flg = 0;
-	}
-	else if ((y == 1 || y == 9) && (x == 0 || x == 14))
-	{
-		BlockStat->flg = 0;
-	}
+	return 0;
+}
+
+//ステージの描画
+void DrawStage()
+{
 }
