@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include "GameMain.h"
+#include"GameBattleInit.h"
+#include"GameTitle.h"
+#include"PlayerControle.h"
+#include"Bom.h"
+
 
 //ƒQ[ƒ€ƒ‚[ƒh‚Ì—ñ‹“Œ^
 typedef enum GAME_MODE { GAME_TITLE, GAME_INIT, GAME_MAIN, GAME_RESULT, GAME_END = 99 } GAME_MODE;
@@ -16,6 +22,10 @@ const short int WINDOW_HEIGHT = 650;
 
 //•Ï”‚ÌéŒ¾
 extern short int GameMode;
+extern int NowKey[PLAYER_LIMIT];
+extern int OldKey[PLAYER_LIMIT];
+extern int KeyFlg[PLAYER_LIMIT];
+
 
 enum PLAYER_NUMBER
 {

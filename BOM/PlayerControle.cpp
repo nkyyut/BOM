@@ -1,3 +1,4 @@
+#include "MainSorce.h"
 #include "PlayerControle.h"
 
 void PlayerStateInit()
@@ -36,5 +37,16 @@ void PlayerStateInit()
 
 void PlayerControl()
 {
+	for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
+	{
+		if (NowKey[i] & PAD_INPUT_UP)
+		{
 
+		}
+		if (NowKey[i] & PAD_INPUT_DOWN)
+		{
+
+		}
+
+	}
 }
