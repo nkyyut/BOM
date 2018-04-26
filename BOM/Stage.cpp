@@ -25,7 +25,7 @@ int LoadStageState()
 	{
 		for (Width = 0; Width < STAGE_WIDTH; Width++)
 		{
-			fscanf(fp, "%d", &StageState[Height][Width].blockimg);
+			fscanf(fp, "%hd", &StageState[Height][Width].blockimg);
 		}
 	}
 
