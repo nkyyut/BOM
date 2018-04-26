@@ -259,3 +259,21 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+Test/image/bomberman1.png
+Test/image/BomEffect.png
+Test/image/Bom.png
+Test/image/BlockImage.png
+Test/Test.vcxproj.filters
+Test/Stage.cpp
+Test/MainSorce.h
+Test/MainSorce.cpp
+Test/GameMain.h
+Test/GameMain.cpp
+Test/Bom.h
+Test/image/BomEffect2.png
+Test/image/BomEffect1.png
+Test/image/BlockImage2.png
+Test/image/BlockImage1.png
+Test/Test.vcxproj
+Test/Stage.h
+Test/Bom.cpp
