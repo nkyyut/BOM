@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MainSorce.h"
+#include "MainSource.h"
 #include "Stage.h"
 #include "Bom.h"
 

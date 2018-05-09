@@ -1,5 +1,6 @@
-#include "MainSorce.h"
 #include "PlayerControle.h"
+
+struct PLAYER PlayerState[PLAYER_LIMIT];
 
 void PlayerStateInit()
 {	

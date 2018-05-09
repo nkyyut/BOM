@@ -1,5 +1,7 @@
 #pragma once
 
+#include "MainSource.h"
+
 struct PLAYER
 {
 	short int x, y;
@@ -11,8 +13,6 @@ struct PLAYER
 	short int img;
 	bool Alive;
 };
-
-struct PLAYER PlayerState[PLAYER_LIMIT];
 
 void PlayerControl();
 void PlayerStateInit();

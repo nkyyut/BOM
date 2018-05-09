@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 //ƒQ[ƒ€ƒ‚[ƒh‚Ì—ñ‹“Œ^
-extern enum GAME_MODE 
+enum GAME_MODE 
 { 
 	GAME_TITLE, 
 	GAME_INIT, 
@@ -26,8 +26,8 @@ enum PLAYER_NUMBER
 
 
 //’è”‚ÌéŒ¾
-const short int STAGE_HEIGHT = 13;
-const short int STAGE_WIDTH = 0;
+const short int STAGE_HEIGHT = 12;
+const short int STAGE_WIDTH = 17;
 const short int WINDOW_WIDTH = 850;
 const short int WINDOW_HEIGHT = 650;
 
