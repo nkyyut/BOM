@@ -1,14 +1,15 @@
-#include "MainSorce.h"
+#include "MainSource.h"
 #include "PlayerControle.h"
 
 int Playerimg;
+bool Initflg;
 struct PLAYER PlayerState[PLAYER_LIMIT];
 
 void PlayerStateInit()
 {	
 	const int STATE_INIT = 2;
 
-	for (int i = PLAYER1; i < PLAYER_LIMIT;)
+	for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
 	{
 		if (i % 2 == 0)
 		{
@@ -36,12 +37,13 @@ void PlayerStateInit()
 		PlayerState[i].img = 1;
 		PlayerState[i].Alive = true;
 	}
-	Playerimg = LoadGraph("image/bomberma1.png");
+	Playerimg = LoadGraph("image/bomberman1.png");
 	GameMode = GAME_MAIN;
 }
 
 void PlayerControl()
 {
+
 	for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
 	{
 		if (NowKey[i] & PAD_INPUT_UP)
