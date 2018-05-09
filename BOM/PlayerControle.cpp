@@ -1,6 +1,9 @@
 #include "MainSorce.h"
 #include "PlayerControle.h"
 
+int Playerimg;
+struct PLAYER PlayerState[PLAYER_LIMIT];
+
 void PlayerStateInit()
 {	
 	const int STATE_INIT = 2;
@@ -33,6 +36,8 @@ void PlayerStateInit()
 		PlayerState[i].img = 1;
 		PlayerState[i].Alive = true;
 	}
+	Playerimg = LoadGraph("image/bomberma1.png");
+	GameMode = GAME_MAIN;
 }
 
 void PlayerControl()
@@ -55,6 +60,16 @@ void PlayerControl()
 		{
 			PlayerState[i].x += PlayerState[i].PSpeed;
 		}
+	}
+
+	DrawPlayer();
+}
+
+void DrawPlayer()
+{
+	for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
+	{
+		DrawGraph(PlayerState[i].x, PlayerState[i].y, Playerimg, TRUE);
 
 	}
 }

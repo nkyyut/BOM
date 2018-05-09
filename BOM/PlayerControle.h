@@ -12,9 +12,8 @@ struct PLAYER
 	bool Alive;
 };
 
-struct PLAYER PlayerState[PLAYER_LIMIT];
-
 void PlayerControl();
 void PlayerStateInit();
+void DrawPlayer();
 bool CheckBombSet();
 void BombSet(short int Bpower, short int PNumber);
