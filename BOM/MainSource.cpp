@@ -1,4 +1,4 @@
-#include "MainSorce.h"
+#include "MainSource.h"
 #include"Bom.h"
 #include"GameBattleInit.h"
 #include"GameMain.h"
@@ -35,6 +35,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	if (LoadImage() == -1) GameMode = GAME_END;
 
+	if(StageStateInit() == -1) GameMode = GAME_END;
+
 	// ÉQÅ[ÉÄÉãÅ[Év
 	while (ProcessMessage() == 0 && GameMode != GAME_END) {
 
@@ -65,6 +67,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			case GAME_INIT:
 				break;
 			case GAME_MAIN:
+				GameMain();
 				break;
 			case GAME_RESULT:
 				break;

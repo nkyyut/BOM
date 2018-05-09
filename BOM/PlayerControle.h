@@ -1,5 +1,7 @@
 #pragma once
 
+#include "MainSource.h"
+
 struct PLAYER
 {
 	short int x, y;
