@@ -2,16 +2,6 @@
 
 #include "MainSource.h"
 
-//\‘¢‘Ì‚ÌéŒ¾
-typedef struct StageState
-{
-	short int x;
-	short int y;
-	int blockimg;
-	int bomimg;
-	int timer;
-}STAGE_STATE;
-
 //•Ï”‚ÌéŒ¾
 extern int StageImage[3];
 extern STAGE_STATE StageState[STAGE_HEIGHT][STAGE_WIDTH];

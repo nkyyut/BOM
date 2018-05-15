@@ -24,6 +24,15 @@ enum PLAYER_NUMBER
 	PLAYER_LIMIT
 };
 
+//\‘¢‘Ì‚ÌéŒ¾
+typedef struct StageState
+{
+	short int x;
+	short int y;
+	int blockimg;
+	int bomimg;
+	int timer;
+}STAGE_STATE;
 
 //’è”‚ÌéŒ¾
 const short int STAGE_HEIGHT = 12;
