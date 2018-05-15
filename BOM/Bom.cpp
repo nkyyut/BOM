@@ -4,11 +4,8 @@ CheckBlastType checkBlastType;
 
 //•Ï”‚ÌéŒ¾
 int BomImage[4];
-short int blastCountI;
-short int blastCountJ;
-short int checkBlastI;
-short int checkBlastJ;
-BomBlast bomBlast[10][15];
+short int TimerSort;
+short int BomTimer[20];
 
 void DrawBom(STAGE_STATE *StagePointer)
 {
@@ -25,6 +22,14 @@ void DrawBom(STAGE_STATE *StagePointer)
 			{
 				CheckBlast(StagePointer, SENTER);
 				StagePointer->timer = 0;
+			}else if (StagePointer->bomimg > 0)
+			{
+				if (StagePointer->bomEfectTimer > 0)
+				{
+					DrawRotaGraph(StagePointer->x, StagePointer->y,
+						1, 0, BomImage[StagePointer->bomimg], TRUE);
+					StagePointer->bomEfectTimer--;
+				}
 			}
 
 			StagePointer++;
@@ -34,10 +39,12 @@ void DrawBom(STAGE_STATE *StagePointer)
 
 int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType)
 {
+	StagePointer->bomEfectTimer = 50;
+
 	switch (checkBlastType)
 	{
 		case SENTER:
-			CheckBlastStat(1, StagePointer->x, StagePointer->y, 0);
+			StagePointer->bomimg = 1;
 
 			if ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0)
 			{
@@ -57,7 +64,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType)
 			}
 			break;
 		case UP:
-			CheckBlastStat(3, StagePointer->x, StagePointer->y, 0);
+			StagePointer->bomimg = 3;
 
 			StagePointer->blockimg = 0;
 			if ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0)
@@ -66,7 +73,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType)
 			}
 			break;
 		case DOWN:
-			CheckBlastStat(3, StagePointer->x, StagePointer->y, 0);
+			StagePointer->bomimg = 3;
 
 			StagePointer->blockimg = 0;
 			if ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0)
@@ -75,7 +82,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType)
 			}
 			break;
 		case RIGHT:
-			CheckBlastStat(2, StagePointer->x, StagePointer->y, 0);
+			StagePointer->bomimg = 2;
 
 			StagePointer->blockimg = 0;
 			if ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0)
@@ -84,7 +91,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType)
 			}
 			break;
 		case LEFT:
-			CheckBlastStat(2, StagePointer->x, StagePointer->y, 0);
+			StagePointer->bomimg = 2;
 
 			StagePointer->blockimg = 0;
 			if ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0)
@@ -205,47 +212,47 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType)
 //	return 0;
 //}
 
-void BlastAnimation()
-{
-	for (blastCountI = 0; blastCountI < 10; blastCountI++)
-	{
-		for (blastCountJ = 0; blastCountJ < 15; blastCountJ++)
-		{
-			if (bomBlast[blastCountI][blastCountJ].flg == 1 && 
-				bomBlast[blastCountI][blastCountJ].timer > 1)
-			{
-				DrawRotaGraph(bomBlast[blastCountI][blastCountJ].x,
-					bomBlast[blastCountI][blastCountJ].y, 1,
-					bomBlast[blastCountI][blastCountJ].angle,
-					BomImage[bomBlast[blastCountI][blastCountJ].image], TRUE);
-				bomBlast[blastCountI][blastCountJ].timer--;
-			}else
-			{
-				bomBlast[blastCountI][blastCountJ].flg = 0;
-				bomBlast[blastCountI][blastCountJ].image = 0;
-			}
-		}
-	}
-}
+//void BlastAnimation()
+//{
+//	for (blastCountI = 0; blastCountI < 10; blastCountI++)
+//	{
+//		for (blastCountJ = 0; blastCountJ < 15; blastCountJ++)
+//		{
+//			if (bomBlast[blastCountI][blastCountJ].flg == 1 && 
+//				bomBlast[blastCountI][blastCountJ].timer > 1)
+//			{
+//				DrawRotaGraph(bomBlast[blastCountI][blastCountJ].x,
+//					bomBlast[blastCountI][blastCountJ].y, 1,
+//					bomBlast[blastCountI][blastCountJ].angle,
+//					BomImage[bomBlast[blastCountI][blastCountJ].image], TRUE);
+//				bomBlast[blastCountI][blastCountJ].timer--;
+//			}else
+//			{
+//				bomBlast[blastCountI][blastCountJ].flg = 0;
+//				bomBlast[blastCountI][blastCountJ].image = 0;
+//			}
+//		}
+//	}
+//}
 
-int CheckBlastStat(short int img, short int x, short int y, short int angle)
-{
-	for (checkBlastI = 0; checkBlastI < 10; checkBlastI++)
-	{
-		for (checkBlastJ = 0; checkBlastJ < 15; checkBlastJ++)
-		{
-			if (bomBlast[checkBlastI][checkBlastJ].flg == 0)
-			{
-				bomBlast[checkBlastI][checkBlastJ].image = img;
-				bomBlast[checkBlastI][checkBlastJ].timer = 50;
-				bomBlast[checkBlastI][checkBlastJ].x = x;
-				bomBlast[checkBlastI][checkBlastJ].y = y;
-				bomBlast[checkBlastI][checkBlastJ].angle = angle;
-				bomBlast[checkBlastI][checkBlastJ].flg = 1;
-				return 1;
-			}
-		}
-	}
-
-	return 0;
-}
+//int CheckBlastStat(short int img, short int x, short int y, short int angle)
+//{
+//	for (checkBlastI = 0; checkBlastI < 10; checkBlastI++)
+//	{
+//		for (checkBlastJ = 0; checkBlastJ < 15; checkBlastJ++)
+//		{
+//			if (bomBlast[checkBlastI][checkBlastJ].flg == 0)
+//			{
+//				bomBlast[checkBlastI][checkBlastJ].image = img;
+//				bomBlast[checkBlastI][checkBlastJ].timer = 50;
+//				bomBlast[checkBlastI][checkBlastJ].x = x;
+//				bomBlast[checkBlastI][checkBlastJ].y = y;
+//				bomBlast[checkBlastI][checkBlastJ].angle = angle;
+//				bomBlast[checkBlastI][checkBlastJ].flg = 1;
+//				return 1;
+//			}
+//		}
+//	}
+//
+//	return 0;
+//}
