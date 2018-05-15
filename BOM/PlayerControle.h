@@ -20,5 +20,5 @@ const short int PLAYER_WIDTH = 50;
 void PlayerControl();
 void PlayerStateInit();
 void DrawPlayer();
-bool CheckBombSet(short int playery,short int playerx);
+bool CheckBombSet(short int BombStock);
 void BombSet(short int Bpower, short int PNumber, short int playery, short int playerx);

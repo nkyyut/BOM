@@ -88,15 +88,14 @@ void PlayerControl()
 		}
 		if (KeyFlg[i] & PAD_INPUT_A)
 		{
-			if (CheckBombSet((PlayerState[i].y+50)/50,(PlayerState[i].x+25)/50) == true)
+			if (CheckBombSet(PlayerState[i].BCount) == true)
 			{
-				BombSet(PlayerState[i].BPower, PlayerState[i].Pnumber, (PlayerState[i].y + 50)/50, (PlayerState[i].x + 25)/50);
+				BombSet(PlayerState[i].BPower, PlayerState[i].Pnumber, 
+						(PlayerState[i].y + 50)/50, (PlayerState[i].x + 25)/50);
 				PlayerState[i].BCount--;
 			}
 		}
-
 	}
-
 	DrawPlayer();
 }
 
@@ -108,9 +107,9 @@ void DrawPlayer()
 	}
 }
 
-bool CheckBombSet(short int playery,short int playerx)
+bool CheckBombSet(short int BombStock)
 {
-	if (StageState[playery][playerx].bomimg == 0)
+	if (BombStock != 0)
 	{
 		return true;
 	}
@@ -120,6 +119,6 @@ bool CheckBombSet(short int playery,short int playerx)
 
 void BombSet(short int Bpower, short int PNumber,short int playery,short int playerx)
 {
-	StageState[playery][playerx].bomimg = 1;
+	StageState[playery][playerx].blockimg = 2;
 	StageState[playery][playerx].timer = 0;
 }
