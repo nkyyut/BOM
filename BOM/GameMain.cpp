@@ -5,6 +5,7 @@
 void GameMain()
 {
 	DrawStage();
+	DrawBom(*StageState);
 	DrawPlayer();
 	PlayerControl();
 }
