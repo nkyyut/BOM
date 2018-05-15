@@ -5,7 +5,7 @@
 struct PLAYER
 {
 	short int x, y;
-	short int w, h;
+	short int wx, hy;
 	short int Pnumber;
 	short int BCount;
 	short int BPower;
@@ -14,7 +14,11 @@ struct PLAYER
 	bool Alive;
 };
 
+const short int PLAYER_HEIGHT = 70;
+const short int PLAYER_WIDTH = 50;
+
 void PlayerControl();
 void PlayerStateInit();
-bool CheckBombSet();
-void BombSet(short int Bpower, short int PNumber);
+void DrawPlayer();
+bool CheckBombSet(short int playery,short int playerx);
+void BombSet(short int Bpower, short int PNumber, short int playery, short int playerx);

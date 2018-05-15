@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	GameMode = GAME_INIT;//ÉQÅ[ÉÄÉÇÅ[ÉhÇÃèâä˙âª
 
 	#ifdef DEBUG
-		GameMode = GAME_MAIN;
+		//GameMode = GAME_MAIN;
 	#endif // DEBUG
 
 	if (LoadImage() == -1) GameMode = GAME_END;
@@ -65,6 +65,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			case GAME_TITLE:
 				break;
 			case GAME_INIT:
+				PlayerStateInit();
 				break;
 			case GAME_MAIN:
 				GameMain();
