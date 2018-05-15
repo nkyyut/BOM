@@ -27,10 +27,10 @@ typedef enum CheckBlastType
 
 //関数のプロトタイプ宣言
 int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType);
-int CheckBlastUp(STAGE_STATE *StagePointer);
-int CheckBlastDown(STAGE_STATE *StagePointer);
-int CheckBlastLeft(STAGE_STATE *StagePointer);
-int CheckBlastRight(STAGE_STATE *StagePointer);
-void BlastAnimation();
+//int CheckBlastUp(STAGE_STATE *StagePointer);
+//int CheckBlastDown(STAGE_STATE *StagePointer);
+//int CheckBlastLeft(STAGE_STATE *StagePointer);
+//int CheckBlastRight(STAGE_STATE *StagePointer);
+//void BlastAnimation();
 void DrawBom(STAGE_STATE *StagePointer);
-int CheckBlastStat(short int img, short int x, short int y, short int angle);
+//int CheckBlastStat(short int img, short int x, short int y, short int angle);
