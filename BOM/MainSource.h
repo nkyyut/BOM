@@ -32,6 +32,7 @@ typedef struct StageState
 	int blockimg;
 	int bomimg;
 	int timer;
+	int PNumber;
 }STAGE_STATE;
 
 //’è”‚ÌéŒ¾

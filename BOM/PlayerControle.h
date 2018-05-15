@@ -17,8 +17,10 @@ struct PLAYER
 const short int PLAYER_HEIGHT = 70;
 const short int PLAYER_WIDTH = 50;
 
+extern PLAYER PlayerState[PLAYER_LIMIT];
+
 void PlayerControl();
 void PlayerStateInit();
 void DrawPlayer();
-bool CheckBombSet(short int BombStock);
+bool CheckBombSet(short int BombStock,short int Px,short int Py);
 void BombSet(short int Bpower, short int PNumber, short int playery, short int playerx);

@@ -35,6 +35,7 @@ void PlayerStateInit()
 		PlayerState[i].BCount = STATE_INIT;
 		PlayerState[i].BPower = STATE_INIT;
 		PlayerState[i].PSpeed = STATE_INIT+2;
+		PlayerState[i].Pnumber = i;
 		PlayerState[i].img = 1;
 		PlayerState[i].Alive = true;
 	}
@@ -55,7 +56,12 @@ void PlayerControl()
 				PlayerState[i].y += PlayerState[i].PSpeed;
 				PlayerState[i].hy += PlayerState[i].PSpeed;
 			}
+			else if (StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].bomimg != 0) 
+			{
+				PlayerState[i].Alive = false;
+			}
 		}
+
 		if (NowKey[i] & PAD_INPUT_DOWN)
 		{
 			PlayerState[i].y += PlayerState[i].PSpeed;
@@ -65,7 +71,12 @@ void PlayerControl()
 				PlayerState[i].y -= PlayerState[i].PSpeed;
 				PlayerState[i].hy -= PlayerState[i].PSpeed;
 			}
+			else if (StageState[PlayerState[i].hy / 50][(PlayerState[i].x + 25) / 50].bomimg != 0) 
+			{
+				PlayerState[i].Alive = false;
+			}
 		}
+
 		if (NowKey[i] & PAD_INPUT_LEFT)
 		{
 			PlayerState[i].x -= PlayerState[i].PSpeed;
@@ -75,7 +86,12 @@ void PlayerControl()
 				PlayerState[i].x += PlayerState[i].PSpeed;
 				PlayerState[i].wx += PlayerState[i].PSpeed;
 			}
+			else if (StageState[(PlayerState[i].y + 50) / 50][PlayerState[i].x / 50].bomimg != 0) 
+			{
+				PlayerState[i].Alive = false;
+			}
 		}
+
 		if (NowKey[i] & PAD_INPUT_RIGHT)
 		{
 			PlayerState[i].x += PlayerState[i].PSpeed;
@@ -85,14 +101,18 @@ void PlayerControl()
 				PlayerState[i].x -= PlayerState[i].PSpeed;
 				PlayerState[i].wx -= PlayerState[i].PSpeed;
 			}
+			else if (StageState[(PlayerState[i].y + 50) / 50][PlayerState[i].wx / 50].bomimg != 0)
+			{
+				PlayerState[i].Alive = false;
+			}
 		}
+
 		if (KeyFlg[i] & PAD_INPUT_A)
 		{
-			if (CheckBombSet(PlayerState[i].BCount) == true)
+			if(CheckBombSet(PlayerState[i].BCount,PlayerState[i].x, PlayerState[i].y) == true)
 			{
 				BombSet(PlayerState[i].BPower, PlayerState[i].Pnumber, 
 						(PlayerState[i].y + 50)/50, (PlayerState[i].x + 25)/50);
-				PlayerState[i].BCount--;
 			}
 		}
 	}
@@ -103,13 +123,17 @@ void DrawPlayer()
 {
 	for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
 	{
-		DrawGraph(PlayerState[i].x, PlayerState[i].y, Playerimg, TRUE);
+		if (PlayerState[i].Alive == true)
+		{
+			DrawGraph(PlayerState[i].x, PlayerState[i].y, Playerimg, TRUE);
+			DrawFormatString(PlayerState[i].x, PlayerState[i].y, 0x00ff00, "%d",PlayerState[i].BCount);
+		}
 	}
 }
 
-bool CheckBombSet(short int BombStock)
+bool CheckBombSet(short int BombStock,short int Px,short int Py)
 {
-	if (BombStock != 0)
+	if (BombStock != 0 && StageState[(Px+25)/50][(Py+50)/50].timer == 0)
 	{
 		return true;
 	}
@@ -119,6 +143,8 @@ bool CheckBombSet(short int BombStock)
 
 void BombSet(short int Bpower, short int PNumber,short int playery,short int playerx)
 {
-	StageState[playery][playerx].blockimg = 2;
-	StageState[playery][playerx].timer = 0;
+	StageState[playery][playerx].PNumber = PNumber;
+	StageState[playery][playerx].timer = 100;
+	PlayerState[PNumber].BCount--;
+
 }
