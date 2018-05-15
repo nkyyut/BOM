@@ -95,8 +95,10 @@ int LoadImage()
 	if ((StageImage[1] = LoadGraph("image/BlockImage1.png")) == -1) return -1;
 	if ((StageImage[2] = LoadGraph("image/BlockImage2.png")) == -1) return -1;
 
-	if ((BomImage[0] = LoadGraph("image/BomEffect.png")) == -1) return -1;
-	if ((BomImage[1] = LoadGraph("image/BomEffect1.png")) == -1) return -1;
+	if ((BomImage[0] = LoadGraph("image/Bom.png")) == -1) return -1;
+	if ((BomImage[1] = LoadGraph("image/BomEffect.png")) == -1) return -1;
+	if ((BomImage[2] = LoadGraph("image/BomEffect1.png")) == -1) return -1;
+	if ((BomImage[3] = LoadGraph("image/BomEffect2.png")) == -1) return -1;
 
 	return 0;
 }
