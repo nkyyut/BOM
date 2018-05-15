@@ -16,19 +16,25 @@ void DrawBom(STAGE_STATE *StagePointer)
 			if (StagePointer->timer > 1)
 			{
 				DrawRotaGraph(StagePointer->x, StagePointer->y,
-					1, 0, BomImage[0], TRUE);
+					1, 0, BomImage[StagePointer->bomimg], TRUE);
 				StagePointer->timer--;
-			}else if (StagePointer->timer == 1)
+			}
+			else if (StagePointer->timer == 1)
 			{
 				CheckBlast(StagePointer, SENTER);
 				StagePointer->timer = 0;
-			}else if (StagePointer->bomimg > 0)
+			}
+			else if (StagePointer->bomimg > 0)
 			{
 				if (StagePointer->bomEfectTimer > 0)
 				{
 					DrawRotaGraph(StagePointer->x, StagePointer->y,
 						1, 0, BomImage[StagePointer->bomimg], TRUE);
 					StagePointer->bomEfectTimer--;
+				}
+				else
+				{
+					StagePointer->bomimg = 0;
 				}
 			}
 
