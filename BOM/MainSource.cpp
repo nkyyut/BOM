@@ -65,6 +65,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			case GAME_TITLE:
 				break;
 			case GAME_INIT:
+				StageStateInit();
 				PlayerStateInit();
 				break;
 			case GAME_MAIN:
@@ -99,6 +100,8 @@ int LoadImage()
 	if ((BomImage[1] = LoadGraph("image/BomEffect.png")) == -1) return -1;
 	if ((BomImage[2] = LoadGraph("image/BomEffect1.png")) == -1) return -1;
 	if ((BomImage[3] = LoadGraph("image/BomEffect2.png")) == -1) return -1;
+
+	if ((ExprotionSE = LoadSoundMem("sounds/bomb1.mp3")) == -1) return -1;
 
 	return 0;
 }

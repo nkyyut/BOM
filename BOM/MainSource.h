@@ -31,8 +31,9 @@ typedef struct StageState
 	short int y;
 	int blockimg;
 	int bomimg;
-	short int bomflg;
+	bool bomflg;
 	int timer;
+	short int PNumber;
 	short int bomEfectTimer;
 }STAGE_STATE;
 
@@ -46,6 +47,8 @@ const short int WINDOW_HEIGHT = 650;
 extern short int GameMode;
 extern int NowKey[PLAYER_LIMIT];
 extern int OldKey[PLAYER_LIMIT];
+extern int ExprotionSE;
+
 extern int KeyFlg[PLAYER_LIMIT];
 
 

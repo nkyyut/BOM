@@ -8,6 +8,5 @@ void GameMain()
 	DrawStage();
 	DrawPlayer();
 	DrawBom(*StageState);
-	BlastAnimation();
 	PlayerControl();
 }
