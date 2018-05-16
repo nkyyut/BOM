@@ -26,7 +26,7 @@ typedef enum CheckBlastType
 }CheckBlastType;
 
 //関数のプロトタイプ宣言
-int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType);
+int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short int power);
 //int CheckBlastUp(STAGE_STATE *StagePointer);
 //int CheckBlastDown(STAGE_STATE *StagePointer);
 //int CheckBlastLeft(STAGE_STATE *StagePointer);
