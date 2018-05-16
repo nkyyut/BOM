@@ -56,7 +56,8 @@ void PlayerControl()
 				PlayerState[i].y -= PlayerState[i].PSpeed;
 				PlayerState[i].hy -= PlayerState[i].PSpeed;
 				if (StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].blockimg != 0 || 
-					StageState[(PlayerState[i].y + 50) / 50 -1][(PlayerState[i].x + 25) / 50].bomflg == true)
+					(StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].bomflg == true &&
+					StageState[(PlayerState[i].hy) / 50][(PlayerState[i].x + 25) / 50].bomflg != true))
 				{
 					PlayerState[i].y += PlayerState[i].PSpeed;
 					PlayerState[i].hy += PlayerState[i].PSpeed;
@@ -72,7 +73,8 @@ void PlayerControl()
 				PlayerState[i].y += PlayerState[i].PSpeed;
 				PlayerState[i].hy += PlayerState[i].PSpeed;
 				if (StageState[PlayerState[i].hy / 50][(PlayerState[i].x + 25) / 50].blockimg != 0 ||
-					StageState[(PlayerState[i].hy - 50) / 50 +1][(PlayerState[i].x + 25) / 50].bomflg == true)
+					(StageState[(PlayerState[i].hy - 35) / 50 +1][(PlayerState[i].x + 25) / 50].bomflg == true &&
+					StageState[(PlayerState[i].hy) / 50][(PlayerState[i].x + 25) / 50].bomflg != true))
 				{
 					PlayerState[i].y -= PlayerState[i].PSpeed;
 					PlayerState[i].hy -= PlayerState[i].PSpeed;
@@ -88,7 +90,8 @@ void PlayerControl()
 				PlayerState[i].x -= PlayerState[i].PSpeed;
 				PlayerState[i].wx -= PlayerState[i].PSpeed;
 				if (StageState[(PlayerState[i].y + 50) / 50][PlayerState[i].x / 50].blockimg != 0 || 
-					StageState[(PlayerState[i].y + 50) / 50][PlayerState[i].x / 50 -1].bomflg == true)
+					(StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x-10) / 50].bomflg == true &&
+						StageState[(PlayerState[i].y + 50) / 50][PlayerState[i].x / 50].bomflg != true))
 				{
 					PlayerState[i].x += PlayerState[i].PSpeed;
 					PlayerState[i].wx += PlayerState[i].PSpeed;
@@ -103,8 +106,9 @@ void PlayerControl()
 			{
 				PlayerState[i].x += PlayerState[i].PSpeed;
 				PlayerState[i].wx += PlayerState[i].PSpeed;
-				if (StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].wx-10) / 50].blockimg != 0 ||
-					StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].wx-10) / 50 +1].bomflg == true)
+				if (StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].wx) / 50].blockimg != 0 ||
+					(StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].wx+10) / 50 +1].bomflg == true &&
+						StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].wx) / 50].bomflg != true))
 				{
 					PlayerState[i].x -= PlayerState[i].PSpeed;
 					PlayerState[i].wx -= PlayerState[i].PSpeed;
@@ -146,6 +150,7 @@ void DrawPlayer()
 			DrawGraph(PlayerState[i].x, PlayerState[i].y, Playerimg[PlayerState[i].img], TRUE);
 			DrawFormatString(PlayerState[i].x, PlayerState[i].y, 0x00ff00, "%d",PlayerState[i].BCount);
 		}
+		DrawBox(PlayerState[i].x, PlayerState[i].y+50, PlayerState[i].wx, PlayerState[i].hy, 0xff0000, FALSE);
 	}
 }
 

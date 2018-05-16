@@ -58,6 +58,7 @@ int StageStateInit()
 			StageState[Height][Width].y = Height * 50 + 25;
 			StageState[Height][Width].timer = 0;
 			StageState[STAGE_HEIGHT][STAGE_WIDTH].bomimg = 0;
+			StageState[Height][Width].bomflg = false;
 		}
 	}
 

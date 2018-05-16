@@ -15,7 +15,7 @@ struct PLAYER
 };
 
 const short int PLAYER_HEIGHT = 70;
-const short int PLAYER_WIDTH = 50;
+const short int PLAYER_WIDTH = 45;
 
 extern PLAYER PlayerState[PLAYER_LIMIT];
 
