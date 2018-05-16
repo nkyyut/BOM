@@ -1,4 +1,5 @@
 #include "Bom.h"
+#include "PlayerControle.h"
  
 CheckBlastType checkBlastType;
 
@@ -21,7 +22,7 @@ void DrawBom(STAGE_STATE *StagePointer)
 			}
 			else if (StagePointer->timer == 1)
 			{
-				CheckBlast(StagePointer, SENTER);
+				CheckBlast(StagePointer, SENTER, PlayerState[StagePointer->PNumber].BPower);
 				StagePointer->timer = 0;
 			}
 			else if (StagePointer->bomimg > 0)
@@ -43,68 +44,72 @@ void DrawBom(STAGE_STATE *StagePointer)
 	}
 }
 
-int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType)
+int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short int power)
 {
 	StagePointer->bomEfectTimer = 50;
 
 	switch (checkBlastType)
 	{
-		case SENTER:
-			StagePointer->bomimg = 1;
+	case SENTER:
+		StagePointer->bomimg = 1;
 
-			if ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0)
-			{
-				CheckBlast(StagePointer - 17, UP);
-			}
-			if ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0)
-			{
-				CheckBlast(StagePointer + 17, DOWN);
-			}
-			if ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0)
-			{
-				CheckBlast(StagePointer + 1, RIGHT);
-			}
-			if ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0)
-			{
-				CheckBlast(StagePointer - 1, LEFT);
-			}
-			break;
-		case UP:
-			StagePointer->bomimg = 3;
+		if ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0)
+		{
+			CheckBlast(StagePointer - 17, UP, power);
+		}
+		if ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0)
+		{
+			CheckBlast(StagePointer + 17, DOWN, power);
+		}
+		if ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0)
+		{
+			CheckBlast(StagePointer + 1, RIGHT, power);
+		}
+		if ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0)
+		{
+			CheckBlast(StagePointer - 1, LEFT, power);
+		}
+		break;
+	case UP:
+		StagePointer->bomimg = 3;
 
-			StagePointer->blockimg = 0;
-			if ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0)
-			{
-				CheckBlast(StagePointer - 17 , UP);
-			}
-			break;
-		case DOWN:
-			StagePointer->bomimg = 3;
+		StagePointer->blockimg = 0;
+		if (power > 0 && ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0))
+		{
+			power--;
+			CheckBlast(StagePointer - 17, UP, power);
+		}
+		break;
+	case DOWN:
+		StagePointer->bomimg = 3;
 
-			StagePointer->blockimg = 0;
-			if ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0)
-			{
-				CheckBlast(StagePointer + 17, DOWN);
-			}
-			break;
-		case RIGHT:
-			StagePointer->bomimg = 2;
+		StagePointer->blockimg = 0;
+		if (power > 0 && ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0))
+		{
+			power--;
+			CheckBlast(StagePointer + 17, DOWN, power);
+		}
+		break;
+	case RIGHT:
+		StagePointer->bomimg = 2;
 
-			StagePointer->blockimg = 0;
-			if ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0)
-			{
-				CheckBlast(StagePointer + 1, RIGHT);
-			}
-			break;
-		case LEFT:
-			StagePointer->bomimg = 2;
+		StagePointer->blockimg = 0;
+		if (power > 0 && ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0))
+		{
+			power--;
+			CheckBlast(StagePointer + 1, RIGHT, power);
+		}
+		break;
+	case LEFT:
+		StagePointer->bomimg = 2;
 
-			StagePointer->blockimg = 0;
-			if ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0)
-			{
-				CheckBlast(StagePointer - 1, LEFT);
-			}
-			break;
+		StagePointer->blockimg = 0;
+		if (power > 0 && ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0))
+		{
+			power--;
+			CheckBlast(StagePointer - 1, LEFT, power);
+		}
+		break;
 	}
 
 	return 0;
