@@ -55,19 +55,19 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 
 		if ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0)
 		{
-			CheckBlast(StagePointer - 17, UP, power);
+			CheckBlast(StagePointer - 17, UP, power - 1);
 		}
 		if ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0)
 		{
-			CheckBlast(StagePointer + 17, DOWN, power);
+			CheckBlast(StagePointer + 17, DOWN, power - 1);
 		}
 		if ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0)
 		{
-			CheckBlast(StagePointer + 1, RIGHT, power);
+			CheckBlast(StagePointer + 1, RIGHT, power - 1);
 		}
 		if ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0)
 		{
-			CheckBlast(StagePointer - 1, LEFT, power);
+			CheckBlast(StagePointer - 1, LEFT, power - 1);
 		}
 		break;
 	case UP:
@@ -76,8 +76,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0))
 		{
-			power--;
-			CheckBlast(StagePointer - 17, UP, power);
+			CheckBlast(StagePointer - 17, UP, power - 1);
 		}
 		break;
 	case DOWN:
@@ -86,8 +85,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0))
 		{
-			power--;
-			CheckBlast(StagePointer + 17, DOWN, power);
+			CheckBlast(StagePointer + 17, DOWN, power - 1);
 		}
 		break;
 	case RIGHT:
@@ -96,8 +94,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0))
 		{
-			power--;
-			CheckBlast(StagePointer + 1, RIGHT, power);
+			CheckBlast(StagePointer + 1, RIGHT, power - 1);
 		}
 		break;
 	case LEFT:
@@ -106,8 +103,7 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0))
 		{
-			power--;
-			CheckBlast(StagePointer - 1, LEFT, power);
+			CheckBlast(StagePointer - 1, LEFT, power - 1);
 		}
 		break;
 	}
