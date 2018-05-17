@@ -62,11 +62,11 @@ int StageStateInit()
 		}
 	}
 
-	StageState[1][1].timer = 100;
-	StageState[1][1].PNumber = 0;
-	StageState[2][1].PNumber = 0;
-	StageState[1][1].timer = 100;
-	StageState[2][1].timer = 150;
+	//StageState[1][1].timer = 100;
+	//StageState[1][1].PNumber = 0;
+	//StageState[2][1].PNumber = 0;
+	//StageState[1][1].timer = 100;
+	//StageState[2][1].timer = 150;
 
 	return 0;
 }
