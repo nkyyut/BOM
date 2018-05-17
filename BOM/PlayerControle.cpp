@@ -4,7 +4,6 @@
 
 int Playerimg[4];
 bool Initflg;
-int StartSE;
 struct PLAYER PlayerState[PLAYER_LIMIT];
 
 void PlayerStateInit()
@@ -145,7 +144,8 @@ void PlayerControl()
 	DrawPlayer();
 	if (KeyFlg[PLAYER1] & PAD_INPUT_START)
 	{
-		GameMode = GAME_INIT;
+		GameMode = GAME_TITLE;
+		StopSoundMem(BattleBGM);
 	}
 }
 

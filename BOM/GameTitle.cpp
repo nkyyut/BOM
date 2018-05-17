@@ -5,6 +5,7 @@ short int drawTimer;
 short int drawTimrMax;
 short int timerInitFlg;
 short int checkSeen;
+int StartSE;
 
 void DrawTitle()
 {
@@ -30,11 +31,12 @@ void DrawTitle()
 	{
 		drawTimrMax = 4;
 		drawTimer = 0;
+		PlaySoundMem(StartSE, DX_PLAYTYPE_BACK, FALSE);
 	}
 
 	if (drawTimrMax == 4)
 	{
-		if (checkSeen > 60)
+		if (CheckSoundMem(StartSE) == 0)
 		{
 			GameMode = GAME_INIT;
 			SetFontSize(20);
