@@ -2,7 +2,7 @@
 #include "PlayerControle.h"
 #include"Stage.h"
 
-int Playerimg[2];
+int Playerimg[4];
 bool Initflg;
 struct PLAYER PlayerState[PLAYER_LIMIT];
 
@@ -15,21 +15,19 @@ void PlayerStateInit()
 		if (i % 2 == 0)
 		{
 			PlayerState[i].x = 50;
-			PlayerState[i].img = 0;
 		}
 		else
 		{
-			PlayerState[i].x = 700;
-			PlayerState[i].img = 1;
+			PlayerState[i].x = 750;
 		}
 
 		if (i < 2)
 		{
-			PlayerState[i].y = 50;
+			PlayerState[i].y = 40;
 		}
 		else
 		{
-			PlayerState[i].y = 500;
+			PlayerState[i].y = 510;
 		}
 
 		PlayerState[i].wx = PlayerState[i].x + PLAYER_WIDTH;
@@ -38,10 +36,13 @@ void PlayerStateInit()
 		PlayerState[i].BPower = STATE_INIT;
 		PlayerState[i].PSpeed = STATE_INIT+2;
 		PlayerState[i].Pnumber = i;
+		PlayerState[i].img = i;
 		PlayerState[i].Alive = true;
 	}
 	Playerimg[0] = LoadGraph("image/bomberman1.png");
 	Playerimg[1] = LoadGraph("image/bomberman2.png");
+	Playerimg[2] = LoadGraph("image/bomberman3.png");
+	Playerimg[3] = LoadGraph("image/bomberman4.png");
 	GameMode = GAME_MAIN;
 }
 
@@ -154,9 +155,9 @@ void DrawPlayer()
 		if (PlayerState[i].Alive == true)
 		{
 			DrawGraph(PlayerState[i].x, PlayerState[i].y, Playerimg[PlayerState[i].img], TRUE);
-			DrawFormatString(PlayerState[i].x, PlayerState[i].y, 0x00ff00, "%d",PlayerState[i].BCount);
+			//DrawFormatString(PlayerState[i].x, PlayerState[i].y, 0x00ff00, "%d",PlayerState[i].BCount);
 		}
-		DrawBox(PlayerState[i].x, PlayerState[i].y+50, PlayerState[i].wx, PlayerState[i].hy, 0xff0000, FALSE);
+		//DrawBox(PlayerState[i].x, PlayerState[i].y+50, PlayerState[i].wx, PlayerState[i].hy, 0xff0000, FALSE);
 	}
 }
 

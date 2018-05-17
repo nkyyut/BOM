@@ -38,7 +38,7 @@ typedef struct StageState
 }STAGE_STATE;
 
 //’è”‚ÌéŒ¾
-const short int STAGE_HEIGHT = 12;
+const short int STAGE_HEIGHT = 13;
 const short int STAGE_WIDTH = 17;
 const short int WINDOW_WIDTH = 850;
 const short int WINDOW_HEIGHT = 650;
