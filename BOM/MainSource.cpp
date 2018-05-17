@@ -8,7 +8,7 @@
 #define DEBUG
 
 //変数の宣言
-short int GameMode = GAME_MAIN;
+short int GameMode;
 int MouseX, MouseY;
 int NowKey[PLAYER_LIMIT];
 int OldKey[PLAYER_LIMIT];
@@ -27,7 +27,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetDrawScreen(DX_SCREEN_BACK); // 描画先画面を裏にする
 
-	GameMode = GAME_INIT;//ゲームモードの初期化
+	GameMode = GAME_TITLE;//ゲームモードの初期化
 
 	#ifdef DEBUG
 		//GameMode = GAME_MAIN;
@@ -57,12 +57,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			KeyFlg[i] = NowKey[i] & ~OldKey[i];
 		}
 
-
-		DrawFormatString(0, 0, 0xffffff, "X:%d  Y:%d", MouseX, MouseY);
-
 		switch(GameMode)
 		{
 			case GAME_TITLE:
+				DrawTitle();
 				break;
 			case GAME_INIT:
 				StageStateInit();
@@ -75,7 +73,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				break;
 		}
 
-		ScreenFlip(); // 裏画面の内容を表画面に反映
+		DxLib::ScreenFlip(); // 裏画面の内容を表画面に反映
 
 	}
 
