@@ -63,6 +63,10 @@ int StageStateInit()
 	}
 
 	//StageState[1][1].timer = 100;
+	//StageState[1][1].PNumber = 0;
+	//StageState[2][1].PNumber = 0;
+	//StageState[1][1].timer = 100;
+	//StageState[2][1].timer = 150;
 
 	return 0;
 }
@@ -80,12 +84,12 @@ void DrawStage()
 
 		}
 	}
-	for (int i = 0; i < STAGE_HEIGHT; i++)
-	{
-		for (int j = 0; j < STAGE_WIDTH; j++)
-		{
-			DrawFormatString(StageState[i][j].x,
-				StageState[i][j].y, 0xffffff, "%d", StageState[i][j].blockimg);
-		}
-	}
+	//for (int i = 0; i < STAGE_HEIGHT; i++)
+	//{
+	//	for (int j = 0; j < STAGE_WIDTH; j++)
+	//	{
+	//		DrawFormatString(StageState[i][j].x,
+	//			StageState[i][j].y, 0xffffff, "%d", StageState[i][j].blockimg);
+	//	}
+	//}
 }

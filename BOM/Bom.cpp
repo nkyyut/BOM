@@ -50,32 +50,56 @@ void DrawBom(STAGE_STATE *StagePointer)
 
 int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short int power)
 {
-	StagePointer->bomEfectTimer = 50;
-
 	switch (checkBlastType)
 	{
 	case SENTER:
+		StagePointer->bomEfectTimer = 50;
+
 		StagePointer->bomimg = 1;
 
 		if ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0)
 		{
+			if ((StagePointer - 17)->bomimg > 0) break;
+
 			CheckBlast(StagePointer - 17, UP, power - 1);
 		}
 		if ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0)
 		{
+			if ((StagePointer + 17)->bomimg > 0) break;
+
 			CheckBlast(StagePointer + 17, DOWN, power - 1);
 		}
 		if ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0)
 		{
+			if ((StagePointer + 1)->bomimg > 0) break;
+
 			CheckBlast(StagePointer + 1, RIGHT, power - 1);
 		}
 		if ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0)
 		{
+			if ((StagePointer - 1)->bomimg > 0) break;
+
 			CheckBlast(StagePointer - 1, LEFT, power - 1);
 		}
 		break;
 	case UP:
+		if ((StagePointer - 17)->bomimg > 0) break;
+
+		StagePointer->bomEfectTimer = 50;
+
 		StagePointer->bomimg = 3;
+
+		if (StagePointer->blockimg == 2)
+		{
+			StagePointer->blockimg = 0;
+			break;
+		}
+
+		if (StagePointer->timer > 1)
+		{
+			StagePointer->timer = 1;
+			break;
+		}
 
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer - 17)->blockimg == 2 || (StagePointer - 17)->blockimg == 0))
@@ -84,7 +108,23 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		}
 		break;
 	case DOWN:
+		if ((StagePointer + 17)->bomimg > 0) break;
+
+		StagePointer->bomEfectTimer = 50;
+
 		StagePointer->bomimg = 3;
+
+		if (StagePointer->blockimg == 2)
+		{
+			StagePointer->blockimg = 0;
+			break;
+		}
+
+		if (StagePointer->timer > 1)
+		{
+			StagePointer->timer = 1;
+			break;
+		}
 
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer + 17)->blockimg == 2 || (StagePointer + 17)->blockimg == 0))
@@ -93,7 +133,23 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		}
 		break;
 	case RIGHT:
+		if ((StagePointer + 1)->bomimg > 0) break;
+
+		StagePointer->bomEfectTimer = 50;
+
 		StagePointer->bomimg = 2;
+
+		if (StagePointer->blockimg == 2)
+		{
+			StagePointer->blockimg = 0;
+			break;
+		}
+
+		if (StagePointer->timer > 1)
+		{
+			StagePointer->timer = 1;
+			break;
+		}
 
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer + 1)->blockimg == 2 || (StagePointer + 1)->blockimg == 0))
@@ -102,7 +158,23 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		}
 		break;
 	case LEFT:
+		if ((StagePointer - 1)->bomimg > 0) break;
+
+		StagePointer->bomEfectTimer = 50;
+
 		StagePointer->bomimg = 2;
+
+		if (StagePointer->blockimg == 2)
+		{
+			StagePointer->blockimg = 0;
+			break;
+		}
+
+		if (StagePointer->timer > 1)
+		{
+			StagePointer->timer = 1;
+			break;
+		}
 
 		StagePointer->blockimg = 0;
 		if (power > 0 && ((StagePointer - 1)->blockimg == 2 || (StagePointer - 1)->blockimg == 0))
