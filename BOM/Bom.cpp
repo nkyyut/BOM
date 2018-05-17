@@ -6,6 +6,7 @@ CheckBlastType checkBlastType;
 //•Ï”‚ÌéŒ¾
 int BomImage[4];
 short int TimerSort;
+int ExprotionSE;
 short int BomTimer[20];
 
 void DrawBom(STAGE_STATE *StagePointer)
@@ -24,6 +25,9 @@ void DrawBom(STAGE_STATE *StagePointer)
 			{
 				CheckBlast(StagePointer, SENTER, PlayerState[StagePointer->PNumber].BPower);
 				StagePointer->timer = 0;
+				StagePointer->bomflg = false;
+				PlayerState[StagePointer->PNumber].BCount++;
+				PlaySoundMem(ExprotionSE, DX_PLAYTYPE_BACK, TRUE);
 			}
 			else if (StagePointer->bomimg > 0)
 			{

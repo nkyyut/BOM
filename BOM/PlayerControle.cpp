@@ -121,14 +121,20 @@ void PlayerControl()
 
 			if (KeyFlg[i] & PAD_INPUT_A)
 			{
-				if (CheckBombSet(PlayerState[i].BCount, PlayerState[i].x, PlayerState[i].y) == true)
+				if (PlayerState[i].BCount > 0 && 
+					StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].timer == 0)
 				{
-					BombSet(PlayerState[i].BPower, PlayerState[i].Pnumber,
-						(PlayerState[i].y + 50) / 50, (PlayerState[i].x + 25) / 50);
+					//BombSet(PlayerState[i].BPower, PlayerState[i].Pnumber,
+					//	(PlayerState[i].y + 50) / 50, (PlayerState[i].x + 25) / 50);
+					StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x+25)/50].PNumber = PlayerState[i].Pnumber;
+					StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].timer = 100;
+					StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].bomflg = true;
+					PlayerState[PlayerState[i].Pnumber].BCount--;
 				}
 			}
 			if (StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].bomimg != 0)
 			{
+				//Ž€–S”»’è
 				PlayerState[i].Alive = false;
 			}
 
