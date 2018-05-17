@@ -2,6 +2,9 @@
 
 #include "MainSource.h"
 
+//’è”‚ÌéŒ¾
+//int TIMELIMIT[5] = {3600,7200,10800,14400,18000};
+
 //•Ï”‚ÌéŒ¾
 extern int StageImage[3];
 extern STAGE_STATE StageState[STAGE_HEIGHT][STAGE_WIDTH];

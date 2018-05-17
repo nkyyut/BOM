@@ -19,17 +19,17 @@ void PlayerStateInit()
 		}
 		else
 		{
-			PlayerState[i].x = 700;
+			PlayerState[i].x = 750;
 			PlayerState[i].img = 1;
 		}
 
 		if (i < 2)
 		{
-			PlayerState[i].y = 50;
+			PlayerState[i].y = 40;
 		}
 		else
 		{
-			PlayerState[i].y = 500;
+			PlayerState[i].y = 510;
 		}
 
 		PlayerState[i].wx = PlayerState[i].x + PLAYER_WIDTH;
