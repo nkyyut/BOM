@@ -87,7 +87,6 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		}
 		break;
 	case UP:
-		if ((StagePointer - 17)->bomimg > 0) break;
 
 		StagePointer->bomEfectTimer = 50;
 
@@ -112,7 +111,6 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		}
 		break;
 	case DOWN:
-		if ((StagePointer + 17)->bomimg > 0) break;
 
 		StagePointer->bomEfectTimer = 50;
 
@@ -137,7 +135,6 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		}
 		break;
 	case RIGHT:
-		if ((StagePointer + 1)->bomimg > 0) break;
 
 		StagePointer->bomEfectTimer = 50;
 
@@ -162,7 +159,6 @@ int CheckBlast(STAGE_STATE *StagePointer, CheckBlastType checkBlastType, short i
 		}
 		break;
 	case LEFT:
-		if ((StagePointer - 1)->bomimg > 0) break;
 
 		StagePointer->bomEfectTimer = 50;
 

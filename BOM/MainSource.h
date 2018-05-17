@@ -53,6 +53,9 @@ extern int BattleBGM;
 
 extern int KeyFlg[PLAYER_LIMIT];
 
+extern int OldSpaceKeyFlg;
+extern int NowSpaceKeyFlg;
+extern int SpaceKeyFlg;
 
 //関数のプロトタイプ宣言
 void GameStatInit();

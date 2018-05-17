@@ -1,6 +1,7 @@
 #include "MainSource.h"
 #include "PlayerControle.h"
 #include"Stage.h"
+#include "Result.h"
 
 int Playerimg[4];
 bool Initflg;
@@ -9,6 +10,8 @@ struct PLAYER PlayerState[PLAYER_LIMIT];
 void PlayerStateInit()
 {	
 	const int STATE_INIT = 2;
+
+	playerCount = GetJoypadNum();
 
 	for (int i = PLAYER1; i < PLAYER_LIMIT; i++)
 	{
@@ -33,12 +36,18 @@ void PlayerStateInit()
 		PlayerState[i].wx = PlayerState[i].x + PLAYER_WIDTH;
 		PlayerState[i].hy = PlayerState[i].y + PLAYER_HEIGHT;
 		PlayerState[i].BCount = STATE_INIT+3;
-		PlayerState[i].BPower = STATE_INIT;
+		PlayerState[i].BPower = 0;
 		PlayerState[i].PSpeed = STATE_INIT+2;
 		PlayerState[i].Pnumber = i;
 		PlayerState[i].img = i;
 		PlayerState[i].Alive = true;
 	}
+
+	for (int i = playerCount; i < PLAYER_LIMIT; i++)
+	{
+		PlayerState[i].Alive = false;
+	}
+
 	Playerimg[0] = LoadGraph("image/bomberman1.png");
 	Playerimg[1] = LoadGraph("image/bomberman2.png");
 	Playerimg[2] = LoadGraph("image/bomberman3.png");
@@ -66,6 +75,7 @@ void PlayerControl()
 				else if (StageState[(PlayerState[i].y + 50) / 50][(PlayerState[i].x + 25) / 50].bomimg != 0)
 				{
 					PlayerState[i].Alive = false;
+					playerCount--;
 				}
 			}
 
@@ -83,6 +93,7 @@ void PlayerControl()
 				else if (StageState[PlayerState[i].hy / 50][(PlayerState[i].x + 25) / 50].bomimg != 0)
 				{
 					PlayerState[i].Alive = false;
+					playerCount--;
 				}
 			}
 
@@ -100,6 +111,7 @@ void PlayerControl()
 				else if (StageState[(PlayerState[i].y + 50) / 50][PlayerState[i].x / 50].bomimg != 0)
 				{
 					PlayerState[i].Alive = false;
+					playerCount--;
 				}
 			}
 
@@ -117,6 +129,7 @@ void PlayerControl()
 				else if (StageState[(PlayerState[i].y + 50) / 50][PlayerState[i].wx / 50].bomimg != 0)
 				{
 					PlayerState[i].Alive = false;
+					playerCount--;
 				}
 			}
 
@@ -137,6 +150,7 @@ void PlayerControl()
 			{
 				//Ž€–S”»’è
 				PlayerState[i].Alive = false;
+				playerCount--;
 			}
 
 		}
@@ -146,6 +160,11 @@ void PlayerControl()
 	{
 		GameMode = GAME_TITLE;
 		StopSoundMem(BattleBGM);
+	}
+
+	if (playerCount <= 1)
+	{
+		GameMode = GAME_RESULT;
 	}
 }
 

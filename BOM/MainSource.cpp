@@ -4,6 +4,7 @@
 #include"GameMain.h"
 #include"PlayerControle.h"
 #include"GameTitle.h"
+#include "Result.h"
 
 #define DEBUG
 
@@ -22,6 +23,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	ChangeWindowMode(TRUE); // ウィンドウモードで起動
+
+	SetMainWindowText("BONDER MAN");
 
 	if (DxLib_Init() == -1) return -1; // DX ライブラリの初期化処理
 
@@ -70,6 +73,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				GameMain();
 				break;
 			case GAME_RESULT:
+				GameResult();
 				break;
 		}
 
