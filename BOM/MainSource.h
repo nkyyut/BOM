@@ -48,6 +48,8 @@ extern short int GameMode;
 extern int NowKey[PLAYER_LIMIT];
 extern int OldKey[PLAYER_LIMIT];
 extern int ExprotionSE;
+extern int StartSE;
+extern int BattleBGM;
 
 extern int KeyFlg[PLAYER_LIMIT];
 

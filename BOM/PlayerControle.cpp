@@ -4,6 +4,7 @@
 
 int Playerimg[4];
 bool Initflg;
+int StartSE;
 struct PLAYER PlayerState[PLAYER_LIMIT];
 
 void PlayerStateInit()

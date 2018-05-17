@@ -100,6 +100,8 @@ int LoadImage()
 	if ((BomImage[3] = LoadGraph("image/BomEffect2.png")) == -1) return -1;
 
 	if ((ExprotionSE = LoadSoundMem("sounds/bomb1.mp3")) == -1) return -1;
+	if ((StartSE = LoadSoundMem("sounds/nc26818.mp3")) == -1) return -1;
+	if ((BattleBGM = LoadSoundMem("sounds/solid_infinity.mp3")) == -1) return -1;
 
 	return 0;
 }
